@@ -1,0 +1,23 @@
+{
+  "name": "bb-common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^10.12.24",
+    "@types/request": "^2.48.1",
+    "@types/request-promise-native": "^1.0.15",
+    "minimist": "^1.2.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
