@@ -8,7 +8,7 @@
 
 ```sh
 $ bb login --username="user" --password="correcthorsebatterystaple"
-<< capability >>
+# capability
 ```
 
 redirect the capability to a file:
@@ -20,5 +20,16 @@ $ bb login --username="user" --password="correcthorsebatterystaple" > ~/.bb/toke
 
 ```sh
 $ bb gw --get-ip=4
-<< ip address of gateway #4 >>
+# ip address of gateway #4
+```
+
+### create gateway
+
+```sh
+$ bb gw --new --org=org_name --name=gw_name
+{
+  result: 'success',
+  id: N,
+  token: 'token_for_gateway_N'
+}
 ```
