@@ -13,7 +13,7 @@ $ bb login --username="user" --password="correcthorsebatterystaple"
 
 redirect the capability to a file:
 ```sh
-$ bb login --username="user" --password="correcthorsebatterystaple" > ~/.bb/user.cap
+$ bb login --username="user" --password="correcthorsebatterystaple" > ~/.bb/token.cap
 ```
 
 ### get gateway ip

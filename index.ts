@@ -2,6 +2,9 @@ import * as bb from "./lib/bb"
 import minimist = require("minimist");
 import * as common from "./mods/main"
 import * as gw from "./mods/gw"
+import fs = require("fs");
+import os = require("os");
+import { resolve } from "url";
 
 interface Modules {
     [key: string]: (_: bb.Client, __: minimist.ParsedArgs) => Promise<void>;
@@ -25,6 +28,14 @@ const modules : Modules = {
     else if (args["cap-file"])
     {
         cap = await bb.LoadToken(args["cap-file"]);
+    }
+    else
+    {
+        const tok_path = resolve(os.homedir() + "/", ".bb/token.cap");
+        if (fs.existsSync(tok_path))
+        {
+            cap = await bb.LoadToken(tok_path);
+        }
     }
 
     const module_name = process.argv[2];
