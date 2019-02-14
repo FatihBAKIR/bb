@@ -21,5 +21,5 @@ class SimpleConfig
 
 export async function LoadConfig(name: string = "any")
 {
-    return new LocalConfig;
+    return new SimpleConfig;
 }

@@ -82,10 +82,9 @@ export async function LoadToken(path : string) : Promise<string>
     return fs.readFileSync(path, "utf8").trim();
 }
 
-export async function GetClient(cap : string | null)
+export async function GetClient(cap : string | null, conf: conf.IConfig)
 {
-    const config = await conf.LoadConfig();
-    return new Client(cap, config);
+    return new Client(cap, conf);
 }
 
 export async function DescribeCapability(cl : Client)

@@ -5,6 +5,7 @@ import * as gw from "./mods/gw"
 import fs = require("fs");
 import os = require("os");
 import { resolve } from "url";
+import * as conf from "./lib/config"
 
 interface Modules {
     [key: string]: (_: bb.Client, __: minimist.ParsedArgs) => Promise<void>;
@@ -40,7 +41,8 @@ const modules : Modules = {
 
     const module_name = process.argv[2];
 
-    const cl = await bb.GetClient(cap);
+    const config = await conf.LoadConfig();
+    const cl = await bb.GetClient(cap, config);
     try
     {
         await modules[module_name](cl, args);
