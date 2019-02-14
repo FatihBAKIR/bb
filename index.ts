@@ -34,7 +34,7 @@ const modules : Modules = {
     {
         cap = await bb.LoadToken(args["cap-file"]);
     }
-    else
+    else if (!args["nocap"])
     {
         const tok_path = resolve(os.homedir() + "/", ".bb/token.cap");
         if (fs.existsSync(tok_path))

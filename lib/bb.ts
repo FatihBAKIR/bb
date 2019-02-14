@@ -127,6 +127,15 @@ export async function GetOrgGateways(cl: Client, orgname: string) : Promise<OrgI
     });
 }
 
+export async function OrgAddUser(cl: Client, orgname: string, username: string) : Promise<void>
+{
+    return await cl.post({
+        uri: `org/${orgname}/add_user`
+    }, {
+        username
+    });
+}
+
 export async function GetServerVersion(cl : Client)
 {
     const options = {

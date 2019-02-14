@@ -28,4 +28,18 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
         const res = (await bb.GetOrgGateways(cl, name));
         console.log(res);
     }
+
+    if (args["add-user"])
+    {
+        const name = args["org-name"];
+        const username = args["user-name"];
+
+        if (!name || !username)
+        {
+            throw new Error("Missing User or Org Name!");
+        }
+
+        const res = (await bb.OrgAddUser(cl, name, username));
+        console.log(res);
+    }
 }
