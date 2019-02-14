@@ -120,6 +120,13 @@ export async function GetOrgId(cl: Client, orgname: string) : Promise<OrgInfo>
     });
 }
 
+export async function GetOrgGateways(cl: Client, orgname: string) : Promise<OrgInfo>
+{
+    return await cl.get({
+        uri: `org/${orgname}/gws`
+    });
+}
+
 export async function GetServerVersion(cl : Client)
 {
     const options = {

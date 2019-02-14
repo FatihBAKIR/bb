@@ -6,7 +6,7 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
 {
     if (args["get-ip"])
     {
-        const ip = await gw.GetIP(cl, parseInt(args["get-ip"]));
+        const ip = await gw.GetIP(cl, parseInt(args["id"]));
         console.log(ip);
         return;
     }

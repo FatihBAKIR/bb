@@ -19,7 +19,7 @@ $ bb login --username="user" --password="correcthorsebatterystaple" > ~/.bb/toke
 ### get gateway ip
 
 ```sh
-$ bb gw --get-ip=4
+$ bb gw --get-ip --id=4
 # ip address of gateway #4
 ```
 

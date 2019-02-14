@@ -25,6 +25,7 @@ export function GetIP(cl: Client, gw_id: number)
         throw err;
     }
 }
+
 export async function UpdateIp(cl: Client, ip : string)
 {
 }

@@ -3,6 +3,7 @@ import minimist = require("minimist");
 import * as common from "./mods/main"
 import * as gw from "./mods/gw"
 import * as raw from "./mods/raw"
+import * as org from "./mods/org"
 import fs = require("fs");
 import os = require("os");
 import { resolve } from "url";
@@ -16,7 +17,8 @@ const modules : Modules = {
     "common" : common.main,
     "login" : common.main,
     "gw" : gw.main,
-    "raw": raw.main
+    "raw": raw.main,
+    "org": org.main
 };
 
 (async() => {
