@@ -2,6 +2,7 @@ import * as bb from "./lib/bb"
 import minimist = require("minimist");
 import * as common from "./mods/main"
 import * as gw from "./mods/gw"
+import * as raw from "./mods/raw"
 import fs = require("fs");
 import os = require("os");
 import { resolve } from "url";
@@ -14,7 +15,8 @@ interface Modules {
 const modules : Modules = {
     "common" : common.main,
     "login" : common.main,
-    "gw" : gw.main
+    "gw" : gw.main,
+    "raw": raw.main
 };
 
 (async() => {
@@ -41,7 +43,9 @@ const modules : Modules = {
 
     const module_name = process.argv[2];
 
-    const config = await conf.LoadConfig();
+    const profile_name = args["profile"] || "default";
+
+    const config = await conf.LoadConfig(profile_name);
     const cl = await bb.GetClient(cap, config);
     try
     {

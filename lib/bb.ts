@@ -108,6 +108,18 @@ export async function LogIn(cl : Client, username: string, password: string) : P
     });
 }
 
+interface OrgInfo
+{
+    id: number;
+}
+
+export async function GetOrgId(cl: Client, orgname: string) : Promise<OrgInfo>
+{
+    return await cl.get({
+        uri: `org/${orgname}/info`
+    });
+}
+
 export async function GetServerVersion(cl : Client)
 {
     const options = {

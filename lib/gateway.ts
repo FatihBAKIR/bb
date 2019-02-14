@@ -1,16 +1,40 @@
-import rp = require("request-promise-native")
-import * as conf from "./config"
-import { resolve } from "url";
+import { Client } from "./bb";
+import errors = require("request-promise-native/errors");
 
-export async function UpdateIp(ip : string)
+class GatewayNotFound extends Error
 {
-    const config = await conf.LoadConfig();
+    constructor(gw_id : number)
+    {
+        super(`Gateway ${gw_id} does not exist!`);
+    }
+}
 
-    const options = {
-        uri: resolve(await config.GetBaseUrl(), "version"),
-        json: true
-    };
+export function GetIP(cl: Client, gw_id: number)
+{
+    try {
+        return cl.get({
+            uri: `gw/${gw_id}/ip`
+        });
+    } catch (err)
+    {
+        const e : errors.StatusCodeError = err;
+        if (e.statusCode == 404)
+        {
+            throw new GatewayNotFound(gw_id);
+        }
+        throw err;
+    }
+}
+export async function UpdateIp(cl: Client, ip : string)
+{
+}
 
-    const res = await rp(options);
-    return res.version;
+export async function New(cl: Client, name: string, org_id: number)
+{
+    return cl.post({
+        uri: "gw/new"
+    }, {
+        name,
+        org: org_id
+    });
 }

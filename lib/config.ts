@@ -19,7 +19,11 @@ class SimpleConfig
     }
 }
 
-export async function LoadConfig(name: string = "any")
+export async function LoadConfig(name: string)
 {
+    if (name == "local")
+    {
+        return new LocalConfig;
+    }
     return new SimpleConfig;
 }
