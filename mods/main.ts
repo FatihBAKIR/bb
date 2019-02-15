@@ -23,4 +23,11 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
         console.log(tok);
         return;
     }
+
+    if (args["_"][0] == "signup")
+    {
+        await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
+        console.log("ok");
+        return;
+    }
 }
