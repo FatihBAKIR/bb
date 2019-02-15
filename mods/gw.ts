@@ -11,6 +11,13 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
         return;
     }
 
+    if (args["send-ip"])
+    {
+        const res = await gw.UpdateIp(cl, parseInt(args["id"]), args["addr"]);
+        console.log(res);
+        return;
+    }
+
     if (args["new"])
     {
         const name = args["name"];

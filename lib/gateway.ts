@@ -26,8 +26,13 @@ export function GetIP(cl: Client, gw_id: number)
     }
 }
 
-export async function UpdateIp(cl: Client, ip : string)
+export async function UpdateIp(cl: Client, gw_id: number, ip : string)
 {
+    return cl.post({
+        uri: `gw/${gw_id}/ip`
+    }, {
+        addr: ip
+    });
 }
 
 export async function New(cl: Client, name: string, org_id: number)
