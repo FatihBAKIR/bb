@@ -5,6 +5,8 @@ import request = require("request");
 import fs = require('fs');
 import errors = require("request-promise-native/errors");
 
+import * as axios from "axios";
+
 class BadSignature extends Error
 {
     constructor()
@@ -19,6 +21,17 @@ class MissingToken extends Error
     {
         super ("missing capability");
     }
+}
+
+interface ReqArgs
+{
+    uri: string;
+
+    method?: "GET" | "POST";
+
+    headers?: any;
+    body?: any;
+    json?: boolean;
 }
 
 export class Client
@@ -39,7 +52,7 @@ export class Client
         return this._token != null;
     }
 
-    private async req(opts : request.CoreOptions & request.UriOptions)
+    private async req(opts : ReqArgs)
     {
         if (!opts.headers)
         {
@@ -67,13 +80,13 @@ export class Client
         }
     }
 
-    async get(opts : request.CoreOptions & request.UriOptions)
+    async get(opts : ReqArgs)
     {
         opts.method = "GET";
         return this.req(opts);
     }
 
-    async post(opts : request.CoreOptions & request.UriOptions, body : any)
+    async post(opts : ReqArgs, body : any)
     {
         opts.method = "POST";
         opts.body = body;
