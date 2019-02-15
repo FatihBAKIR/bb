@@ -25,11 +25,13 @@ export class Client
 {
     private readonly _token : string | null;
     private readonly _config : conf.IConfig;
+    private readonly _verbose: boolean;
 
-    constructor(cap : string | null, c : conf.IConfig)
+    constructor(cap : string | null, c : conf.IConfig, verbose: boolean)
     {
         this._token = cap;
         this._config = c;
+        this._verbose = verbose;
     }
 
     HaveToken() : boolean
@@ -48,7 +50,8 @@ export class Client
             opts.headers!["x-access-token"] = this._token;
         }
         opts.json = true;
-        opts.uri = resolve(await this._config.GetBaseUrl(), opts.uri.toString());        
+        opts.uri = resolve(await this._config.GetBaseUrl(), opts.uri.toString());
+        console.info(`[${opts.method}]\t${opts.uri}`);      
         try
         {
             return await rp(opts);
@@ -66,6 +69,7 @@ export class Client
 
     async get(opts : request.CoreOptions & request.UriOptions)
     {
+        opts.method = "GET";
         return this.req(opts);
     }
 
@@ -82,9 +86,9 @@ export async function LoadToken(path : string) : Promise<string>
     return fs.readFileSync(path, "utf8").trim();
 }
 
-export async function GetClient(cap : string | null, conf: conf.IConfig)
+export async function GetClient(cap : string | null, conf: conf.IConfig, verbose: boolean)
 {
-    return new Client(cap, conf);
+    return new Client(cap, conf, verbose);
 }
 
 export async function DescribeCapability(cl : Client)
@@ -149,11 +153,8 @@ export async function OrgAddUser(cl: Client, orgname: string, username: string) 
 
 export async function GetServerVersion(cl : Client)
 {
-    const options = {
-        uri: "version",
-        json: true
-    };
-
-    const res = await cl.get(options);
+    const res = await cl.get({
+        uri: "version"
+    });
     return res.version;
 }

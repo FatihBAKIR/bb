@@ -51,7 +51,7 @@ const modules : Modules = {
     const profile_name = args["profile"] || "default";
 
     const config = await conf.LoadConfig(profile_name);
-    const cl = await bb.GetClient(cap, config);
+    const cl = await bb.GetClient(cap, config, args["verbose"]);
     try
     {
         await modules[module_name](cl, args);
