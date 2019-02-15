@@ -16,6 +16,7 @@ interface Modules {
 const modules : Modules = {
     "common" : common.main,
     "login" : common.main,
+    "signup" : common.main,
     "gw" : gw.main,
     "raw": raw.main,
     "org": org.main
