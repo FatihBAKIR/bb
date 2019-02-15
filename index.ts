@@ -4,6 +4,7 @@ import * as common from "./mods/main"
 import * as gw from "./mods/gw"
 import * as raw from "./mods/raw"
 import * as org from "./mods/org"
+import * as user from "./mods/user"
 import fs = require("fs");
 import os = require("os");
 import { resolve } from "url";
@@ -19,6 +20,7 @@ const modules : Modules = {
     "signup" : common.main,
     "gw" : gw.main,
     "raw": raw.main,
+    "user": user.main,
     "org": org.main
 };
 
