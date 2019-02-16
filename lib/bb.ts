@@ -73,12 +73,11 @@ export class Client
         catch (err)
         {
             const e: AxiosResponse = err.response;
-            console.log(err);
             if (e.status == 401 && e.data.reason == "bad signature")
             {
                 throw new BadSignature;
             }
-            throw err;
+            throw e;
         }
     }
 

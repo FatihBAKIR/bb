@@ -1,5 +1,4 @@
 import { Client } from "./bb";
-import errors = require("request-promise-native/errors");
 
 class GatewayNotFound extends Error
 {
@@ -17,8 +16,7 @@ export function GetIP(cl: Client, gw_id: number)
         });
     } catch (err)
     {
-        const e : errors.StatusCodeError = err;
-        if (e.statusCode == 404)
+        if (err.status == 404)
         {
             throw new GatewayNotFound(gw_id);
         }
