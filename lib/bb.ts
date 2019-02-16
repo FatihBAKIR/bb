@@ -1,4 +1,3 @@
-import rp = require("request-promise-native")
 import * as conf from "./config"
 import { resolve } from "url";
 import fs = require('fs');
