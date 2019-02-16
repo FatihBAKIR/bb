@@ -15,7 +15,7 @@ class SimpleConfig
     implements IConfig
 {
     async GetBaseUrl() {
-        return "http://159.89.150.190:3000/";
+        return "https://api.bakir.io/";
     }
 }
 

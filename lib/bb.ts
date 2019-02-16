@@ -1,11 +1,9 @@
 import rp = require("request-promise-native")
 import * as conf from "./config"
 import { resolve } from "url";
-import request = require("request");
 import fs = require('fs');
-import errors = require("request-promise-native/errors");
 
-import * as axios from "axios";
+import { default as axios, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 class BadSignature extends Error
 {
@@ -30,7 +28,7 @@ interface ReqArgs
     method?: "GET" | "POST";
 
     headers?: any;
-    body?: any;
+    data?: any;
     json?: boolean;
 }
 
@@ -65,14 +63,19 @@ export class Client
         opts.json = true;
         opts.uri = resolve(await this._config.GetBaseUrl(), opts.uri.toString());
         console.info(`[${opts.method}]\t${opts.uri}`);      
+
+        const axiosOpts: AxiosRequestConfig = opts;
+        axiosOpts.url = opts.uri;
+
         try
         {
-            return await rp(opts);
+            return (await axios(axiosOpts)).data;
         }
         catch (err)
         {
-            const e : errors.StatusCodeError = err;
-            if (e.statusCode == 401 && e.error.reason == "bad signature")
+            const e: AxiosResponse = err.response;
+            console.log(err);
+            if (e.status == 401 && e.data.reason == "bad signature")
             {
                 throw new BadSignature;
             }
@@ -89,14 +92,16 @@ export class Client
     async post(opts : ReqArgs, body : any)
     {
         opts.method = "POST";
-        opts.body = body;
+        opts.data = body;
         return this.req(opts);
     }
 }
 
 export async function LoadToken(path : string) : Promise<string>
 {
-    return fs.readFileSync(path, "utf8").trim();
+    return fs.readFileSync(path, {
+        encoding: "utf16le"
+    }).trim();
 }
 
 export async function GetClient(cap : string | null, conf: conf.IConfig, verbose: boolean)
