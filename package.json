@@ -15,11 +15,7 @@
     "@types/axios": "^0.14.0",
     "@types/minimist": "^1.2.0",
     "@types/node": "^10.12.24",
-    "@types/request": "^2.48.1",
-    "@types/request-promise-native": "^1.0.15",
     "axios": "^0.18.0",
-    "minimist": "^1.2.0",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "minimist": "^1.2.0"
   }
 }
