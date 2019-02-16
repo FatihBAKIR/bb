@@ -1,6 +1,7 @@
 import * as conf from "./config"
 import { resolve } from "url";
 import fs = require('fs');
+import chardet = require("chardet");
 
 import { default as axios, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
@@ -97,9 +98,15 @@ export class Client
 
 export async function LoadToken(path : string) : Promise<string>
 {
-    return fs.readFileSync(path, {
-        encoding: "utf16le"
-    }).trim();
+    const buf = fs.readFileSync(path);
+    const enc = <string | undefined>chardet.detect(buf);
+    
+    if (!enc) {
+        throw new Error("Can't determine encoding");
+    }
+
+    const str = buf.toString(enc);
+    return str.trim();
 }
 
 export async function GetClient(cap : string | null, conf: conf.IConfig, verbose: boolean)
