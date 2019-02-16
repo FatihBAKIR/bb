@@ -62,7 +62,10 @@ export class Client
         }
         opts.json = true;
         opts.uri = resolve(await this._config.GetBaseUrl(), opts.uri.toString());
-        console.info(`[${opts.method}]\t${opts.uri}`);      
+
+        if (this._verbose) {
+            console.info(`[${opts.method}]\t${opts.uri}`);
+        }
 
         const axiosOpts: AxiosRequestConfig = opts;
         axiosOpts.url = opts.uri;

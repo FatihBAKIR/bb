@@ -58,7 +58,7 @@ const modules : Modules = {
     }
     catch (err)
     {
-        const e : Error = err;
-        console.log(`error: ${e.message}`);
+        console.log(`Error code: [${err.status}], details:`);
+        console.log(err.data);
     }
 })();
