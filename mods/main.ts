@@ -1,4 +1,5 @@
 import minimist = require("minimist");
+import { resolve } from "url";
 import fs = require('fs');
 import os = require('os');
 import * as bb from "../lib/bb"
@@ -23,8 +24,8 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     {
         const tok = await bb.LogIn(cl, args["username"], args["password"]);
         if(tok){
-
-            fs.writeFile(os.homedir() + "/.bb/token.cap",tok, (err) => {
+            
+            fs.writeFile(resolve(os.homedir() + "/", ".bb/token.cap"),tok, (err) => {
                 if (err) throw err;
             })
         }
@@ -36,8 +37,7 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     {
         
         const ret = await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
-        const retJson = JSON.parse(JSON.stringify(ret));
-        if(retJson.result){
+        if(ret.result){
             const tok = await bb.LogIn(cl, args["username"], args["password"])
             console.log(tok);
         }
