@@ -26,8 +26,15 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
 
     if (args["_"][0] == "signup")
     {
-        await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
-        console.log("ok");
+        
+        const ret = await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
+        const retJson = JSON.parse(JSON.stringify(ret));
+        if(retJson.result){
+            const tok = await bb.LogIn(cl, args["username"], args["password"])
+            console.log(tok);
+        }
+        
+        
         return;
     }
 }

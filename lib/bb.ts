@@ -128,7 +128,7 @@ export async function DescribeCapability(cl : Client)
     });
 }
 
-export async function CreateAccount(cl : Client, username: string, password: string, email: string) : Promise<void>
+export async function CreateAccount(cl : Client, username: string, password: string, email: string) : Promise<string>
 {
     return await cl.post({
         uri: "user/new"
