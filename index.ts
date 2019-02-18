@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as bb from "./lib/bb"
 import minimist = require("minimist");
 import * as common from "./mods/main"
@@ -58,7 +60,13 @@ const modules : Modules = {
     }
     catch (err)
     {
-        console.log(`Error code: [${err.status}], details:`);
-        console.log(err.data);
+        if (err.status)
+        {
+            console.error(`Error code: [${err.status}], details:`);
+            console.error(err.data);
+        }
+        else {
+            console.error(err.message);
+        }
     }
 })();

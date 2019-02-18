@@ -35,14 +35,8 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
 
     if (args["_"][0] == "signup")
     {
-        
         const ret = await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
-        if(ret.result){
-            const tok = await bb.LogIn(cl, args["username"], args["password"])
-            console.log(tok);
-        }
-        
-        
+        console.log(`Signup successful, please check ${args["email"]} for confirmation`);
         return;
     }
 }

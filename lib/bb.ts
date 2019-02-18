@@ -9,7 +9,7 @@ class BadSignature extends Error
 {
     constructor()
     {
-        super ("capability signature mismatch");
+        super ("Capability signature mismatch\nAre you sure you are supplying a capability from the correct host?");
     }
 }
 
@@ -17,7 +17,7 @@ class MissingToken extends Error
 {
     constructor()
     {
-        super ("missing capability");
+        super ("Missing capability");
     }
 }
 

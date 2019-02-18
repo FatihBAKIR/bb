@@ -1,15 +1,14 @@
 {
-  "name": "bb-common",
-  "version": "1.0.0",
-  "description": "",
+  "name": "bb-cl",
+  "version": "0.1.1",
+  "description": "Command line client to bakir.io",
   "main": "build/index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Fatih BAKIR",
   "license": "ISC",
   "dependencies": {
     "@types/axios": "^0.14.0",
