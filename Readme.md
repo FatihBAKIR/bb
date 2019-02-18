@@ -4,13 +4,13 @@
 
 ## Get Started
 
-```
+```sh
 $ npm install -g bb-cl # with sudo on linux
 ```
 
 This installs the `bb` command. Test it with:
 
-```
+```sh
 $ bb common --server-version
 # Server version: x.y.z
 ```
