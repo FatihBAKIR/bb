@@ -48,9 +48,16 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
         {
             
         }
-        if (args["_"][1] == "get" && args["text"])
+        if (args["_"][1] == "get" && args["text"] && args["username"])
         {
-
+            const ret = await bb.GetKeyText(cl, args["username"]);
+            console.log(ret);
+        }
+        if (args["_"][1] == "add" && args["username"])
+        {
+            const ret = await bb.PostKey(cl, "oguz", "hedeasdf");
+            console.log(args["username"]);
+            console.log(ret);
         }
         console.log(args);
         return;

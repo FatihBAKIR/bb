@@ -128,6 +128,23 @@ export async function DescribeCapability(cl : Client)
     });
 }
 
+export async function GetKeyText(cl : Client, username : string) : Promise<string>
+{
+    return await cl.get({
+        uri: `keys/user/${username}`
+    })
+}
+
+export async function PostKey(cl : Client, username : string, key : string)
+{
+    return await cl.post({
+        uri: `keys/user/${username}`
+    }, {
+        key,
+        username
+    });
+}
+
 export async function CreateAccount(cl : Client, username: string, password: string, email: string) : Promise<any>
 {
     return await cl.post({
