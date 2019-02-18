@@ -24,7 +24,9 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     {
         const tok = await bb.LogIn(cl, args["username"], args["password"]);
         if(tok){
-            
+            await fs.mkdir(resolve(os.homedir() + "/", ".bb"),(err) => {
+                if (err) throw err;
+            })
             fs.writeFile(resolve(os.homedir() + "/", ".bb/token.cap"),tok, (err) => {
                 if (err) throw err;
             })
@@ -37,6 +39,20 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     {
         const ret = await bb.CreateAccount(cl, args["username"], args["password"], args["email"]);
         console.log(`Signup successful, please check ${args["email"]} for confirmation`);
+        return;
+    }
+
+    if (args["_"][0] == "keys")
+    {
+        if (args["_"][1] == "get")
+        {
+            
+        }
+        if (args["_"][1] == "get" && args["text"])
+        {
+
+        }
+        console.log(args);
         return;
     }
 }

@@ -20,10 +20,11 @@ const modules : Modules = {
     "common" : common.main,
     "login" : common.main,
     "signup" : common.main,
+    "keys" : common.main,
     "gw" : gw.main,
     "raw": raw.main,
     "user": user.main,
-    "org": org.main
+    "org": org.main    
 };
 
 (async() => {
