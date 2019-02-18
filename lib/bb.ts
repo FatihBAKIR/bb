@@ -69,6 +69,7 @@ export class Client
 
         const axiosOpts: AxiosRequestConfig = opts;
         axiosOpts.url = opts.uri;
+        axiosOpts.headers["Accept"] = "application/json";
 
         try
         {
@@ -128,11 +129,11 @@ export async function DescribeCapability(cl : Client)
     });
 }
 
-export async function GetKeyText(cl : Client, username : string) : Promise<string>
+export async function GetKeys(cl : Client, username : string) : Promise<string>
 {
     return await cl.get({
         uri: `keys/user/${username}`
-    })
+    });
 }
 
 export async function PostKey(cl : Client, username : string, key : string)
@@ -140,8 +141,7 @@ export async function PostKey(cl : Client, username : string, key : string)
     return await cl.post({
         uri: `keys/user/${username}`
     }, {
-        key,
-        username
+        key
     });
 }
 
