@@ -2,7 +2,26 @@
 
 `bb` is a command line utility to manage bb cloud
 
+## Get Started
+
+```
+$ npm install -g bb-cl # with sudo on linux
+```
+
+This installs the `bb` command. Test it with:
+
+```
+$ bb common --server-version
+# Server version: x.y.z
+```
+
 ## commands
+
+### signup
+```sh
+$ bb signup --username="user" --password="correcthorsebatterystaple" --email="my_email_addr@bakir.io"
+# ...
+```
 
 ### login
 
@@ -11,10 +30,25 @@ $ bb login --username="user" --password="correcthorsebatterystaple"
 # capability
 ```
 
-redirect the capability to a file:
+Also updates `~/.bb/token.cap` for future requests.
+
+### token-info
+
 ```sh
-$ bb login --username="user" --password="correcthorsebatterystaple" > ~/.bb/token.cap
+$ bb common --token-info
+# token info
 ```
+
+Useful for checking the validity and capabilities of your token.
+
+### user info
+
+```sh
+$ bb user --info --id=1
+# information about user #1
+```
+
+You can only query your own user at the moment
 
 ### get gateway ip
 
@@ -33,3 +67,17 @@ $ bb gw --new --org=org_name --name=gw_name
   token: 'token_for_gateway_N'
 }
 ```
+
+## global flags
+
+### `--nocap`
+
+Disables loading the default token from `~/.bb/token.cap`
+
+### `--cap=path`
+
+Loads and uses the capability token from the given file
+
+### `--verbose`
+
+Logs all requests made by `bb`
