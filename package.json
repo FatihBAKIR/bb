@@ -1,17 +1,19 @@
 {
   "name": "bb-cl",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command line client to bakir.io",
   "main": "build/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "bin": "build"
   },
-  "scripts": {
+  "bin": {
+    "bb": "build/index.js"
   },
+  "scripts": {},
   "author": "Fatih BAKIR",
   "license": "ISC",
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "@types/chardet": "^0.5.0",
     "@types/minimist": "^1.2.0",
     "@types/node": "^10.12.24",
