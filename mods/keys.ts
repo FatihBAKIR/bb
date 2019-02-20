@@ -14,7 +14,11 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
 
     if (args["_"][1] == "add" && args["name"])
     {
-        const ret = await bb.PostKey(cl, args["name"], "hedeasdf");
-        console.log(ret);
+        if (args["key"])
+        {
+            const ret = await bb.PostKey(cl, args["name"], args["key"]);
+            console.log(ret);
+        }
+        
     }
 }
