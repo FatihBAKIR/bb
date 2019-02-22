@@ -9,7 +9,8 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     if (args["server-version"] || args["sv"])
     {
         const v = await bb.GetServerVersion(cl);
-        console.log(`Cloud version: ${v}`);
+        console.log(`Cloud version: ${v.version}`);
+        console.log(`Commit SHA: ${v.sha}`)
         return;
     }
     

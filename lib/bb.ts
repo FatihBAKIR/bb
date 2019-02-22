@@ -199,5 +199,5 @@ export async function GetServerVersion(cl : Client)
     const res = await cl.get({
         uri: "version"
     });
-    return res.version;
+    return res;
 }
