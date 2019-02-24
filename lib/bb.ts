@@ -129,7 +129,7 @@ export async function DescribeCapability(cl : Client)
     });
 }
 
-export async function GetKeys(cl : Client, username : string) : Promise<string>
+export async function GetKeys(cl : Client, username : string)
 {
     return await cl.get({
         uri: `keys/user/${username}`

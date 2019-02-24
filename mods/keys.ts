@@ -9,6 +9,14 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     if (args["_"][1] == "get" && args["name"])
     {
         const ret = await bb.GetKeys(cl, args["name"]);
+        if (args["text"])
+        {
+            for (var key of ret)
+            {
+                console.log(key.key);
+            }
+            return;
+        }
         console.log(ret);
     }
 
