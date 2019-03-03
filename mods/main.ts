@@ -26,10 +26,7 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
         const tok = await bb.LogIn(cl, args["username"], args["password"]);
         if(tok){
             await fs.mkdir(resolve(os.homedir() + "/", ".bb"),(err) => {
-                if (err)
-                {
-                    //TODO: throw if dir does not exist
-                }
+                if (err) throw err; // If homedir does not exists, this will come up
             });
             fs.writeFile(resolve(os.homedir() + "/", ".bb/token.cap"),tok, (err) => {
                 if (err) throw err;
