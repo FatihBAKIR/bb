@@ -7,6 +7,7 @@ import * as gw from "./mods/gw"
 import * as raw from "./mods/raw"
 import * as org from "./mods/org"
 import * as user from "./mods/user"
+import * as keys from "./mods/keys"
 import fs = require("fs");
 import os = require("os");
 import { resolve } from "url";
@@ -20,10 +21,11 @@ const modules : Modules = {
     "common" : common.main,
     "login" : common.main,
     "signup" : common.main,
+    "keys" : keys.main,
     "gw" : gw.main,
     "raw": raw.main,
     "user": user.main,
-    "org": org.main
+    "org": org.main    
 };
 
 (async() => {

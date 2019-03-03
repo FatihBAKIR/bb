@@ -9,7 +9,8 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     if (args["server-version"] || args["sv"])
     {
         const v = await bb.GetServerVersion(cl);
-        console.log(`Cloud version: ${v}`);
+        console.log(`Cloud version: ${v.version}`);
+        console.log(`Commit SHA: ${v.sha}`)
         return;
     }
     
@@ -24,7 +25,9 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
     {
         const tok = await bb.LogIn(cl, args["username"], args["password"]);
         if(tok){
-            
+            await fs.mkdir(resolve(os.homedir() + "/", ".bb"),(err) => {
+                if (err) throw err; // If homedir does not exists, this will come up
+            });
             fs.writeFile(resolve(os.homedir() + "/", ".bb/token.cap"),tok, (err) => {
                 if (err) throw err;
             })

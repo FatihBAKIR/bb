@@ -9,7 +9,7 @@ class BadSignature extends Error
 {
     constructor()
     {
-        super ("Capability signature mismatch\nAre you sure you are supplying a capability from the correct host?");
+        super ("Capability signature mismatch\nIf you are sure that you are using correct server, try to relogin");
     }
 }
 
@@ -69,6 +69,7 @@ export class Client
 
         const axiosOpts: AxiosRequestConfig = opts;
         axiosOpts.url = opts.uri;
+        axiosOpts.headers["Accept"] = "application/json";
 
         try
         {
@@ -128,6 +129,22 @@ export async function DescribeCapability(cl : Client)
     });
 }
 
+export async function GetKeys(cl : Client, username : string)
+{
+    return await cl.get({
+        uri: `keys/user/${username}`
+    });
+}
+
+export async function PostKey(cl : Client, username : string, key : string)
+{
+    return await cl.post({
+        uri: `keys/user/${username}`
+    }, {
+        key
+    });
+}
+
 export async function CreateAccount(cl : Client, username: string, password: string, email: string) : Promise<any>
 {
     return await cl.post({
@@ -182,5 +199,5 @@ export async function GetServerVersion(cl : Client)
     const res = await cl.get({
         uri: "version"
     });
-    return res.version;
+    return res;
 }
