@@ -9,7 +9,7 @@ class BadSignature extends Error
 {
     constructor()
     {
-        super ("Capability signature mismatch\nAre you sure you are supplying a capability from the correct host?");
+        super ("Capability signature mismatch\nIf you are sure that you are using correct server, try to relogin");
     }
 }
 
