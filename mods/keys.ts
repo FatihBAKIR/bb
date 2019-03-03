@@ -28,5 +28,12 @@ export async function main(cl: bb.Client, args : minimist.ParsedArgs)
             console.log(ret);
         }
         
+        if (args["file"])
+            {
+                const key = fs.readFileSync(args["file"], "utf8").trim();
+                const ret = await bb.PostKey(cl, args["name"], key);
+                console.log(ret);
+            }
+        return;
     }
 }
